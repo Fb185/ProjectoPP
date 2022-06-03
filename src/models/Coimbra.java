@@ -4,7 +4,7 @@ class Coimbra {
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;
 
-  Lisboa() {
+  Coimbra() {
     System.out.println("Estacao Coimbra Operacional");
     this.passageirosNaEstacao = passageirosNaEstacao;
     this.autocarrosNaEstacao = autocarrosNaEstacao;
