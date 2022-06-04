@@ -5,8 +5,18 @@ class Braga {
 
   Braga() {
     System.out.println("Estacao Braga Operacional");
-    this.passageirosNaEstacao = passageirosNaEstacao;
-    this.autocarrosNaEstacao = autocarrosNaEstacao;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getPassageirosNaEstacao() {
+    return this.passageirosNaEstacao;
+  }
+
+  public int getAutocarrosNaEstacao() {
+    return this.autocarrosNaEstacao;
   }
 
 }

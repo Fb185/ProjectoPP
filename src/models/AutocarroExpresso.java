@@ -12,6 +12,10 @@ class AutocarroExpresso {
     return numeroPassageiros;
   }
 
+  public float getSpeed() {
+    return this.speed;
+  }
+
   public boolean hasAvaria() {
     return this.avaria;
   }

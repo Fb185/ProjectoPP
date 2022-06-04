@@ -12,6 +12,10 @@ class AutocarroLongDrive {
     return this.numeroPassageiros;
   }
 
+  public float getSpeed() {
+    return this.speed;
+  }
+
   public boolean hasAvarai() {
     return this.avaria;
   }

@@ -6,7 +6,17 @@ class Coimbra {
 
   Coimbra() {
     System.out.println("Estacao Coimbra Operacional");
-    this.passageirosNaEstacao = passageirosNaEstacao;
-    this.autocarrosNaEstacao = autocarrosNaEstacao;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getPassageirosNaEstacao() {
+    return this.passageirosNaEstacao;
+  }
+
+  public int getAutocarrosNaEstacao() {
+    return this.autocarrosNaEstacao;
   }
 }

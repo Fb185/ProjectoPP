@@ -12,6 +12,10 @@ class AutocarroMiniBus {
     return this.numeroPassagerios;
   }
 
+  public float getSpeed() {
+    return this.speed;
+  }
+
   public boolean hasAvaria() {
     return this.avaria;
   }
