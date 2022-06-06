@@ -1,6 +1,6 @@
-import view.CLI;
+import views.CLI;
 
-class Program {
+public class Program {
   public static void main(String[] args) {
     new CLI();
   }
