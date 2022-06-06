@@ -23,7 +23,7 @@ public class Autocarros extends Thread {
     return this.avaria;
   }
 
-  public float getSpeed() {
+  public float getSpeed() { // i am speed
     return this.speed;
   }
 

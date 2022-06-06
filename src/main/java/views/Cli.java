@@ -7,10 +7,10 @@ public class Cli {
 
     Controller controller = new Controller();
 
-    // controller.createExpresso();
-    // controller.createMiniBus();
+    controller.createExpresso();
+    controller.createMiniBus();
     controller.createConvencional();
-    // controller.createLongDrive();
+    controller.createLongDrive();
   }
 
 }

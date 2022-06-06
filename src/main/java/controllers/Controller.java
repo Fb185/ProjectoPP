@@ -1,11 +1,15 @@
 package controllers;
 
+import java.util.HashMap;
+
 import models.*;
 
 public class Controller {
+  HashMap<String, Autocarros> busMap = new HashMap<String, Autocarros>();
+  HashMap<String, Cidade> cidades = new HashMap<String, Cidade>();
 
   public void createConvencional() {
-    Autocarros autocarroConvencional = new Autocarros(51, 10);
+    Autocarros autocarroConvencional = new Autocarros(51, 1);
     autocarroConvencional.start();
     System.out.println("convencional created");
   }
