@@ -6,9 +6,11 @@ public class Cli {
   public Cli() {
 
     Controller controller = new Controller();
-    System.out.println("DEBUG: from CLI");
 
-    controller.CreateBus();
+    // controller.createExpresso();
+    // controller.createMiniBus();
+    controller.createConvencional();
+    // controller.createLongDrive();
   }
 
 }
