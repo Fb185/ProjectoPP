@@ -1,10 +1,12 @@
+package models;
+
 class AutocarroLongDrive {
   final int maxPassageiros = 24;
   private int numeroPassageiros = 0;
   private boolean avaria = false;
   private float speed;
 
-  AutocarroLongDrive() {
+  public AutocarroLongDrive() {
     System.out.println("Autocarro Long Drive");
   }
 

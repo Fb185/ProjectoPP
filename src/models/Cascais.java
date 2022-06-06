@@ -1,10 +1,11 @@
+package models;
 
 class Cascais {
   private String name = "Cascais";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;
 
-  Cascais() {
+  public Cascais() {
     System.out.println("Estacao Cascais Operacional");
   }
 

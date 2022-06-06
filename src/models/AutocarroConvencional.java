@@ -1,14 +1,12 @@
-class AutocarroConvencional {
+package models;
+
+public class AutocarroConvencional {
   final int maxPassageiros = 51;
   private int numeroPassageiros = 0;
   private boolean avaria = false;
   private float speed;
 
-  public static void main(String[] args) {
-    System.out.println("hello world");
-  }
-
-  AutocarroConvencional() {
+  public AutocarroConvencional() {
     System.out.println("Autocarro Convencional");
   }
 

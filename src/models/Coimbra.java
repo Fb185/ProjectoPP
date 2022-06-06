@@ -1,10 +1,11 @@
+package models;
 
 class Coimbra {
   private String name = "Coimbra";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;
 
-  Coimbra() {
+  public Coimbra() {
     System.out.println("Estacao Coimbra Operacional");
   }
 

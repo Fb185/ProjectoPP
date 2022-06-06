@@ -1,9 +1,11 @@
+package models;
+
 class Braga {
   private String name = "Braga";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;
 
-  Braga() {
+  public Braga() {
     System.out.println("Estacao Braga Operacional");
   }
 

@@ -1,10 +1,12 @@
+package models;
+
 class AutocarroExpresso {
   final int maxPassageiros = 0;
   private int numeroPassageiros = 0;
   private boolean avaria = false;
   private float speed;
 
-  AutocarroExpresso() {
+  public AutocarroExpresso() {
     System.out.println("Autocarro Expresso");
   }
 
