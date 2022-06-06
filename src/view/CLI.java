@@ -1,12 +1,19 @@
 package view;
 
-import models.*;
 import controller.Controller;
-import models.AutocarroConvencional;
+import models.*;
 
 public class CLI {
   public static void main(String[] args) {
     Controller newcontroller = new Controller();
-    AutocarroConvencional newautocarro = new AutocarroConvencional();
+    AutocarroConvencional newConvencional = new AutocarroConvencional();
+    AutocarroExpresso newExpresso = new AutocarroExpresso();
+    AutocarroLongDrive newLongDrive = new AutocarroLongDrive();
+    AutocarroMiniBus newMiniBus = new AutocarroMiniBus();
+    Porto porto = new Porto();
+    Lisboa lisboa = new Lisboa();
+    Cascais cascais = new Cascais();
+    Coimbra coimbra = new Coimbra();
+    Braga braga = new Braga();
   }
 }

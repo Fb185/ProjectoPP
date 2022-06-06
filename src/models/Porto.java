@@ -1,6 +1,6 @@
 package models;
 
-class Porto {
+public class Porto {
   private String name = "Porto";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;

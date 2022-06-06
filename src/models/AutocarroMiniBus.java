@@ -1,6 +1,6 @@
 package models;
 
-class AutocarroMiniBus {
+public class AutocarroMiniBus {
   final int maxPassageiros = 24;
   private int numeroPassagerios = 0;
   private boolean avaria = false;

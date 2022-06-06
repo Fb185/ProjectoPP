@@ -1,6 +1,6 @@
 package models;
 
-class Cascais {
+public class Cascais {
   private String name = "Cascais";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;

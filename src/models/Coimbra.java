@@ -1,6 +1,6 @@
 package models;
 
-class Coimbra {
+public class Coimbra {
   private String name = "Coimbra";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;

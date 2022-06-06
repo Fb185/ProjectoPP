@@ -1,6 +1,6 @@
 package models;
 
-class Lisboa {
+public class Lisboa {
   private String name = "Lisboa";
   private int passageirosNaEstacao;
   private int autocarrosNaEstacao;
