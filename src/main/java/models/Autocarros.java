@@ -3,11 +3,20 @@ package models;
 public class Autocarros extends Thread {
   final int maxPassageiros;
   private int numeroPassageiros = 0;
-  private boolean avaria;
+  private boolean avaria = false;
   private float speed;
+  private String currentLocation = "Cascais";
 
   @Override
   public void run() {
+  }
+
+  public void setCurrentLocation(String currentLocation) {
+    this.currentLocation = currentLocation;
+  }
+
+  public String getCurrentLocation() {
+    return currentLocation;
   }
 
   public Autocarros(int maxPassageiros, float speed) {
