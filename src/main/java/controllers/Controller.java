@@ -10,10 +10,6 @@ public class Controller {
 
   HashMap<String, Cidade> cidades = new HashMap<String, Cidade>();
 
-  public void listBus() {
-    busMap.forEach((k, v) -> System.out.println("key: " + k + " | value: " + v));
-  }
-
   public void createConvencional() {
     Autocarros autocarroConvencional = new Autocarros(51, 1); // Autocarros(MAXPAX, SPEED)
     busID++;
@@ -44,6 +40,10 @@ public class Controller {
     busMap.put(busID, autocarroLongDrive);
     // autocarroLongDrive.start();
     System.out.println("Autocarro Long Drive Ligado");
+  }
+
+  public void listBus() {
+    busMap.forEach((k, v) -> System.out.println("key: " + k + " | value: " + v));
   }
 
   public void getAllpax() {

@@ -2,6 +2,7 @@ package models;
 
 public class Autocarros extends Thread {
   final int maxPassageiros;
+  private boolean moving = false;
   private int numeroPassageiros = 0;
   private boolean avaria = false;
   private float speed;
@@ -16,7 +17,11 @@ public class Autocarros extends Thread {
   }
 
   public String getCurrentLocation() {
-    return currentLocation;
+    if (this.moving) {
+      return "Bus is on the move";
+    } else {
+      return currentLocation;
+    }
   }
 
   public Autocarros(int maxPassageiros, float speed) {
@@ -42,5 +47,9 @@ public class Autocarros extends Thread {
 
   public void removePassageiro() {
     this.numeroPassageiros--;
+  }
+
+  public boolean isMoving() {
+    return this.moving;
   }
 }
