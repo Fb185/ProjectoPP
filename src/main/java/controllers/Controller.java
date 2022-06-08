@@ -10,36 +10,204 @@ public class Controller {
 
   HashMap<String, Cidade> cidades = new HashMap<String, Cidade>();
 
-  public void createConvencional() {
-    Autocarros autocarroConvencional = new Autocarros(51, 1); // Autocarros(MAXPAX, SPEED)
-    busID++;
-    busMap.put(busID, autocarroConvencional);
-    // autocarroConvencional.start();
-    System.out.println("Autocarro Convencional Ligado");
+  public void createConvencionalLisboa(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroConvencional = new Autocarros(51, 1, "Lisboa"); // Autocarros(MAXPAX, S, "LisboaPEED)
+      busID++;
+      busMap.put(busID, autocarroConvencional);
+      // autocarroConvencional.start();
+      System.out.println("Autocarro Convencional Ligado");
+    }
   }
 
-  public void createExpresso() {
-    Autocarros autocarroExpresso = new Autocarros(69, 9);
-    busID++;
-    busMap.put(busID, autocarroExpresso);
-    // autocarroExpresso.start();
-    System.out.println("Autocarro Expresso Ligado");
+  public void createExpressoLisboa(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroExpresso = new Autocarros(69, 9, "Lisboa");
+      busID++;
+      busMap.put(busID, autocarroExpresso);
+      // autocarroExpresso.start();
+      System.out.println("Autocarro Expresso Ligado");
+    }
   }
 
-  public void createMiniBus() {
-    Autocarros autocarroMiniBus = new Autocarros(24, 3);
-    busID++;
-    busMap.put(busID, autocarroMiniBus);
-    // autocarroMiniBus.start();
-    System.out.println("Autocarro Mini-Bus Ligado");
+  public void createMiniBusLisboa(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroMiniBus = new Autocarros(24, 3, "Lisboa");
+      busID++;
+      busMap.put(busID, autocarroMiniBus);
+      // autocarroMiniBus.start();
+      System.out.println("Autocarro Mini-Bus Ligado");
+    }
   }
 
-  public void createLongDrive() {
-    Autocarros autocarroLongDrive = new Autocarros(59, 14);
-    busID++;
-    busMap.put(busID, autocarroLongDrive);
-    // autocarroLongDrive.start();
-    System.out.println("Autocarro Long Drive Ligado");
+  public void createLongDriveLisboa(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroLongDrive = new Autocarros(59, 14, "Lisboa");
+      busID++;
+      busMap.put(busID, autocarroLongDrive);
+      // autocarroLongDrive.start();
+      System.out.println("Autocarro Long Drive Ligado");
+    }
+  }
+
+  public void createConvencionalCascais(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroConvencional = new Autocarros(51, 1, "Cascais");
+      busID++;
+      busMap.put(busID, autocarroConvencional);
+      // autocarroConvencional.start();
+      System.out.println("Autocarro Convencional Ligado");
+    }
+  }
+
+  public void createExpressoCascais(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroExpresso = new Autocarros(69, 9, "Cascais");
+      busID++;
+      busMap.put(busID, autocarroExpresso);
+      // autocarroExpresso.start();
+      System.out.println("Autocarro Expresso Ligado");
+    }
+  }
+
+  public void createMiniBusCascais(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroMiniBus = new Autocarros(24, 3, "Cascais");
+      busID++;
+      busMap.put(busID, autocarroMiniBus);
+      // autocarroMiniBus.start();
+      System.out.println("Autocarro Mini-Bus Ligado");
+    }
+  }
+
+  public void createLongDriveCascais(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroLongDrive = new Autocarros(59, 14, "Cascais");
+      busID++;
+      busMap.put(busID, autocarroLongDrive);
+      // autocarroLongDrive.start();
+      System.out.println("Autocarro Long Drive Ligado");
+    }
+  }
+
+  public void createConvencionalCoimbra(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroConvencional = new Autocarros(51, 1, "Coimbra"); // Autocarros(MAXPAX, S, "CoimbraPEED)
+      busID++;
+      busMap.put(busID, autocarroConvencional);
+      // autocarroConvencional.start();
+      System.out.println("Autocarro Convencional Ligado");
+    }
+  }
+
+  public void createExpressoCoimbra(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroExpresso = new Autocarros(69, 9, "Coimbra");
+      busID++;
+      busMap.put(busID, autocarroExpresso);
+      // autocarroExpresso.start();
+      System.out.println("Autocarro Expresso Ligado");
+    }
+  }
+
+  public void createMiniBusCoimbra(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroMiniBus = new Autocarros(24, 3, "Coimbra");
+      busID++;
+      busMap.put(busID, autocarroMiniBus);
+      // autocarroMiniBus.start();
+      System.out.println("Autocarro Mini-Bus Ligado");
+    }
+  }
+
+  public void createLongDriveCoimbra(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroLongDrive = new Autocarros(59, 14, "Coimbra");
+      busID++;
+      busMap.put(busID, autocarroLongDrive);
+      // autocarroLongDrive.start();
+      System.out.println("Autocarro Long Drive Ligado");
+    }
+  }
+
+  public void createConvencionalPorto(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroConvencional = new Autocarros(51, 1, "Porto"); // Autocarros(MAXPAX, SPEED, "Porto")
+      busID++;
+      busMap.put(busID, autocarroConvencional);
+      // autocarroConvencional.start();
+      System.out.println("Autocarro Convencional Ligado");
+    }
+  }
+
+  public void createExpressoPorto(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroExpresso = new Autocarros(69, 9, "Porto");
+      busID++;
+      busMap.put(busID, autocarroExpresso);
+      // autocarroExpresso.start();
+      System.out.println("Autocarro Expresso Ligado");
+    }
+  }
+
+  public void createMiniBusPorto(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroMiniBus = new Autocarros(24, 3, "Porto");
+      busID++;
+      busMap.put(busID, autocarroMiniBus);
+      // autocarroMiniBus.start();
+      System.out.println("Autocarro Mini-Bus Ligado");
+    }
+  }
+
+  public void createLongDrivePorto(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroLongDrive = new Autocarros(59, 14, "Porto");
+      busID++;
+      busMap.put(busID, autocarroLongDrive);
+      // autocarroLongDrive.start();
+      System.out.println("Autocarro Long Drive Ligado");
+    }
+  }
+
+  public void createConvencionalBraga(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroConvencional = new Autocarros(51, 1, "Braga"); // Autocarros(MAXPAX, SPEED, "Braga")
+      busID++;
+      busMap.put(busID, autocarroConvencional);
+      // autocarroConvencional.start();
+      System.out.println("Autocarro Convencional Ligado");
+    }
+  }
+
+  public void createExpressoBraga(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroExpresso = new Autocarros(69, 9, "Braga");
+      busID++;
+      busMap.put(busID, autocarroExpresso);
+      // autocarroExpresso.start();
+      System.out.println("Autocarro Expresso Ligado");
+    }
+  }
+
+  public void createMiniBusBraga(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroMiniBus = new Autocarros(24, 3, "Braga");
+      busID++;
+      busMap.put(busID, autocarroMiniBus);
+      // autocarroMiniBus.start();
+      System.out.println("Autocarro Mini-Bus Ligado");
+    }
+  }
+
+  public void createLongDriveBraga(int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      Autocarros autocarroLongDrive = new Autocarros(59, 14, "Braga");
+      busID++;
+      busMap.put(busID, autocarroLongDrive);
+      // autocarroLongDrive.start();
+      System.out.println("Autocarro Long Drive Ligado");
+    }
   }
 
   public void listBus() {

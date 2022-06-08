@@ -6,7 +6,7 @@ public class Autocarros extends Thread {
   private int numeroPassageiros = 0;
   private boolean avaria = false;
   private float speed;
-  private String currentLocation = "Cascais";
+  private String currentLocation;
 
   @Override
   public void run() {
@@ -24,9 +24,10 @@ public class Autocarros extends Thread {
     }
   }
 
-  public Autocarros(int maxPassageiros, float speed) {
+  public Autocarros(int maxPassageiros, float speed, String currentLocation) {
     this.maxPassageiros = maxPassageiros;
     this.speed = speed;
+    this.currentLocation = currentLocation;
   }
 
   public int getNumeroPassageiros() {
