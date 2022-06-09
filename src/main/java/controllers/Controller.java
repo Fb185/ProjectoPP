@@ -5,19 +5,29 @@ import java.util.HashMap;
 import models.*;
 
 public class Controller {
-  HashMap<Integer, Autocarros> busMap = new HashMap<Integer, Autocarros>();
-  private int busID = 0;
+  private int busID;
+  HashMap<Integer, AutocarroExpresso> expressoMap = new HashMap<Integer, AutocarroExpresso>();
+  HashMap<Integer, AutocarroLongDrive> longDriveMap = new HashMap<Integer, AutocarroLongDrive>();
+  HashMap<Integer, AutocarroMiniBus> miniBusMap = new HashMap<Integer, AutocarroMiniBus>();
 
   HashMap<String, Cidade> cidades = new HashMap<String, Cidade>();
 
   public void createConvencionalLisboa(int quantity) {
     for (int i = 0; i < quantity; i++) {
-      Autocarros autocarroConvencional = new Autocarros(51, 1, "Lisboa"); // Autocarros(MAXPAX, S, "LisboaPEED)
-      busID++;
-      busMap.put(busID, autocarroConvencional);
+
+      AutocarroConvencional newConvencional = new AutocarroConvencional("Lisboa");
+
       // autocarroConvencional.start();
       System.out.println("Autocarro Convencional Ligado");
     }
+  }
+
+  public void createCascais(int passageiros) {
+    Cascais cascais = new Cascais(passageiros);
+  }
+
+  public void createLisboa(int passageiros) {
+    Lisboa lisboa = new Lisboa(passageiros);
   }
 
   public void createExpressoLisboa(int quantity) {
