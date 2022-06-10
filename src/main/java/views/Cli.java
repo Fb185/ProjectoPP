@@ -90,8 +90,8 @@ public class Cli {
       br.close();
 
     }
-    controller.createCascais(passageirosCascais);
-    controller.createLisboa(passageirosLisboa);
+    controller.createCities(passageirosCascais, passageirosLisboa, passageirosCoimbra, passageirosPorto,
+        passageirosBraga);
     controller.createConvencionalCascais(convencionalCascais);
     controller.createConvencionalLisboa(convencionalLisboa);
     controller.createConvencionalCoimbra(convencionalCoimbra);

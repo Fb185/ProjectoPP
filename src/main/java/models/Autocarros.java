@@ -6,13 +6,14 @@ public class Autocarros {
   private boolean moving = false;
   private int numeroPassageiros = 0;
   private boolean avaria = false;
-  private float speed;
+  private int speed;
   private String currentLocation;
 
-  public Autocarros(int maxPassageiros, float speed, String currentLocation) {
+  public Autocarros(int maxPassageiros, int speed, String currentLocation, int busID) {
     this.maxPassageiros = maxPassageiros;
     this.speed = speed;
     this.currentLocation = currentLocation;
+    this.busID = busID;
   }
 
   public int getBusID() {
