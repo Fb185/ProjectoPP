@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import models.*;
+import models.Autocarros.*;
+import models.Cidades.*;
 
 public class Controller {
   private int busID = 0;
@@ -31,22 +33,22 @@ public class Controller {
     for (int i=0; i< quantidade; i++){
       busID++;
       if(tipoAutocarro.equals("Convencional")){
-        AutocarroConvencional autocarroConvencional = new AutocarroConvencional(nomeCidade, busID);
+        AutocarroConvencional autocarroConvencional = new AutocarroConvencional(nomeCidade, busID, cidades);
         autocarrosHashMap.put(busID, autocarroConvencional);
         funcionario.adicionarNovaThread(autocarroConvencional);
         // TODO ver melhor depois
         //cidades.get(nomeCidade);
       }
       else if (tipoAutocarro.equals("Expresso")) {
-        AutocarroExpresso autocarroExpresso = new AutocarroExpresso(nomeCidade, busID);
+        AutocarroExpresso autocarroExpresso = new AutocarroExpresso(nomeCidade, busID, cidades);
         autocarrosHashMap.put(busID, autocarroExpresso);
       }
       else if (tipoAutocarro.equals("LongDrive")) {
-        AutocarroLongDrive autocarroLongDrive = new AutocarroLongDrive(nomeCidade, busID);
+        AutocarroLongDrive autocarroLongDrive = new AutocarroLongDrive(nomeCidade, busID, cidades);
         autocarrosHashMap.put(busID, autocarroLongDrive);
       }
       else if (tipoAutocarro.equals("Minibus")) {
-        AutocarroMiniBus autocarroMiniBus = new AutocarroMiniBus(nomeCidade, busID);
+        AutocarroMiniBus autocarroMiniBus = new AutocarroMiniBus(nomeCidade, busID, cidades);
         autocarrosHashMap.put(busID, autocarroMiniBus);
       }
     }

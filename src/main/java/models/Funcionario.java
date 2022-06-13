@@ -1,11 +1,10 @@
 package models;
 
-import java.lang.reflect.Executable;
+import models.Autocarros.Autocarros;
+
 import java.util.HashMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class Funcionario {
   private HashMap<Integer, Autocarros> busList;
@@ -25,6 +24,5 @@ public class Funcionario {
     this.busListThreads.put(autocarro.getBusID(), thread);
     this.threadPool.submit(thread);
   }
-
 
 }

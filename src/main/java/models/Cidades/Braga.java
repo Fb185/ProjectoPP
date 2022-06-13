@@ -1,4 +1,4 @@
-package models;
+package models.Cidades;
 
 public class Braga extends Cidade {
 

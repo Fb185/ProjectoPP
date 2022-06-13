@@ -7,6 +7,8 @@ import controllers.Controller;
 public class Cli {
   String line = "";
   String splitBy = ",";
+
+  //What
   private int convencionalCascais;
   private int convencionalLisboa;
   private int convencionalCoimbra;
@@ -30,7 +32,6 @@ public class Cli {
   private int longDriveCoimbra;
   private int longDrivePorto;
   private int longDriveBraga;
-  private Controller controller;
 
   private int passageirosCascais;
   private int passageirosLisboa;
@@ -40,43 +41,22 @@ public class Cli {
   private int numeroAvarias;
   private int intensidadeTransito;
 
-  public Cli() throws IOException {
+  private Controller controller;
+
+  public Cli() {
 
     controller = new Controller();
 
-    controller.createCities(passageirosCascais, passageirosLisboa, passageirosCoimbra, passageirosPorto,
-        passageirosBraga);
-    //controller.createConvencionalCascais(convencionalCascais);
-    //controller.createConvencionalLisboa(convencionalLisboa);
-    //controller.createConvencionalCoimbra(convencionalCoimbra);
-    //controller.createConvencionalPorto(convencionalPorto);
-    //controller.createConvencionalBraga(convencionalBraga);
-//
-    //controller.createExpressoCascais(expressoCascais);
-    //controller.createExpressoLisboa(expressoLisboa);
-    //controller.createExpressoCoimbra(expressoCoimbra);
-    //controller.createExpressoPorto(expressoPorto);
-    //controller.createExpressoBraga(expressoBraga);
-//
-    //controller.createMiniBusCascais(miniBusCascais);
-    //controller.createMiniBusLisboa(miniBusLisboa);
-    //controller.createMiniBusCoimbra(miniBusCoimbra);
-    //controller.createMiniBusPorto(miniBusPorto);
-    //controller.createMiniBusBraga(miniBusBraga);
-//
-    //controller.createLongDriveCascais(longDriveCascais);
-    //controller.createLongDriveLisboa(longDriveLisboa);
-    //controller.createLongDriveCoimbra(longDriveCoimbra);
-    //controller.createLongDrivePorto(longDrivePorto);
-    //controller.createLongDriveBraga(longDriveBraga);
+    controller.createCities(10, 10, 10, 10, 10);
 
     controller.createAutocarro("Convencional", "Cascais", 1);
+    controller.createAutocarro("Expresso", "Cascais", 1);
+    controller.createAutocarro("LongDrive", "Cascais", 1);
+    controller.createAutocarro("Minibus", "Cascais", 1);
     controller.simular();
 
 
   }
 
-  // these should be for funcionario
-  // System.out.println(controller.hasAvaria(1));
 
 }
