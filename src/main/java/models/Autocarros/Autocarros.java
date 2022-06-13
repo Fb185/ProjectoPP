@@ -36,6 +36,9 @@ public class Autocarros implements Runnable{
     this.goingForward = true;
     this.cidadeMap = cidadesMap;
     this.passageiros = new HashMap<>();
+    for(String cidade: this.cidades){
+      this.passageiros.put(cidade, new ArrayList<>());
+    }
     this.numeroPassageiros = 0;
   }
 
@@ -84,26 +87,26 @@ public class Autocarros implements Runnable{
     while(isRunning){
       System.out.println(this.cidades.contains(this.currentLocation));
       if(this.cidades.contains(this.currentLocation)){
-        //TODO
-        //Logica dentro da cidade
+
 
         try {
           System.out.println(busID + " está em " + this.currentLocation);
           TimeUnit.MILLISECONDS.sleep(1000);
           if(this.passageiros.get(this.currentLocation).size() > 0){
-            this.passageiros.put(this.currentLocation, new ArrayList<Passageiro>());
+            System.out.println("nos passageiros");
+            this.passageiros.put(this.currentLocation, new ArrayList<>());
           }
-          while(this.numeroPassageiros < this.maxPassageiros){
+          while(this.numeroPassageiros < this.maxPassageiros && this.cidadeMap.get(this.currentLocation).hasPassageiros()){
             Passageiro passageiro = this.cidadeMap.get(this.currentLocation).getPassageiro();
             this.passageiros.get(passageiro.getCidadeDestino()).add(passageiro);
           }
           System.out.println(this.busID + " saiu de " + this.currentLocation);
-
+          this.currentLocation = null;
         } catch (InterruptedException e) {
           throw new RuntimeException(e);
         }
-
       }
+
       else {
         //Avaria
         double chanceDeAvaria = ThreadLocalRandom.current().nextDouble();
@@ -113,12 +116,13 @@ public class Autocarros implements Runnable{
           tempoDeAvaria = this.avarias.get(rand.nextInt(this.avarias.size()));
         }
         //
-
         try {
           System.out.println(this.busID + "esta a mudar de cidade");
           TimeUnit.MILLISECONDS.sleep(1000 + tempoDeAvaria);
           System.out.println(this.busID + "está a chegar na cidade");
-          this.currentLocation = this.cidades.get(this.cidades.indexOf(this.currentLocation)+1);
+          //this.currentLocation = this.cidades.get(this.cidades.indexOf(this.currentLocation)+1);
+          System.out.println(this.currentLocation);
+
         } catch (InterruptedException e) {
           throw new RuntimeException(e);
         }
@@ -126,7 +130,6 @@ public class Autocarros implements Runnable{
         //TODO
         //"dormir" o tempo que a thread precisa
         //if ( houver alguma avaria, adicionar ao tempo do percurso )
-        break;
       }
     }
   }
