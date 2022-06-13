@@ -34,7 +34,11 @@ public class Cidade {
   }
 
   public Passageiro getPassageiro() {
-    return this.passageiroList.remove(this.passageiroList.size());
+    return this.passageiroList.remove(this.passageiroList.size()-1);
+  }
+
+  public boolean hasPassageiros() {
+    return this.passageiroList.size() > 0;
   }
 
   // public int getautoCarrosNaEstacao() {

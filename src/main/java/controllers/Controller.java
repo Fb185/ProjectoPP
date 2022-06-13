@@ -36,8 +36,6 @@ public class Controller {
         AutocarroConvencional autocarroConvencional = new AutocarroConvencional(nomeCidade, busID, cidades);
         autocarrosHashMap.put(busID, autocarroConvencional);
         funcionario.adicionarNovaThread(autocarroConvencional);
-        // TODO ver melhor depois
-        //cidades.get(nomeCidade);
       }
       else if (tipoAutocarro.equals("Expresso")) {
         AutocarroExpresso autocarroExpresso = new AutocarroExpresso(nomeCidade, busID, cidades);
@@ -56,7 +54,7 @@ public class Controller {
 
   public void simular(){
     try {
-      TimeUnit.MILLISECONDS.sleep(3000);
+      TimeUnit.MILLISECONDS.sleep(10000);
       this.autocarrosHashMap.get(1).stopRunning();
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
