@@ -1,4 +1,6 @@
-package models;
+package models.Cidades;
+
+import models.Cidades.Cidade;
 
 public class Porto extends Cidade {
 
