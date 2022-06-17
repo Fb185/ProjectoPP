@@ -27,7 +27,6 @@ public class Autocarros extends Thread {
   private Boolean isRunning;
 
   public Autocarros(int maxPassageiros, double speed, int currentLocation, int busID, List<List> cidades) {
-    System.out.println("Autocarro ligado");
     this.passengerCities = cidades;
     this.maxPassageiros = maxPassageiros;
     this.speed = speed;
@@ -95,24 +94,30 @@ public class Autocarros extends Thread {
 
   public void offloadPassengers() {
     String myLocation = this.cidades.get(this.currentLocation);
+    int count = 0;
     for (int i = 0; i < passengersInBus.size(); i++) {
       // System.out.println(passengersInBus);
       var p = passengersInBus.get(i);
       if (p.getCidadeDestino().matches(myLocation)) {
+        count++;
         i--;
         passengersInBus.remove(p);
         this.numeroPassageiros--;
       }
     }
+    System.out.println("autocarro " + busID + " | Descarregou " + count + " passageiros em " + myLocation);
   }
 
   public void loadPassengers() {
+    String myLocation = this.cidades.get(this.currentLocation);
+    int count = 0;
     synchronized (this.passengerCities) {
       List<Passageiro> passengers = this.passengerCities.get(this.currentLocation);
       for (int i = 0; i < passengers.size(); i++) {
         if (this.passengersInBus.size() == maxPassageiros) {
           break;
         }
+        count++;
         i--;
 
         Passageiro p = passengers.get(0);
@@ -120,6 +125,7 @@ public class Autocarros extends Thread {
         passengers.remove(p);
         this.numeroPassageiros++;
       }
+      System.out.println("autocarro " + busID + " | Carregou " + count + " passageiros em " + myLocation);
     }
   }
 
@@ -152,9 +158,8 @@ public class Autocarros extends Thread {
         Thread.sleep(100);
 
         // TODO refractor this
-        // System.out.println("autocarro " + this.busID + " esta a " + (i + 1) + "/5 da
-        // viagem ate "
-        // + this.cidades.get(this.currentLocation));
+        System.out.println("autocarro " + this.busID + " | Esta a " + (i + 1) + "/5 da viagem ate "
+            + this.cidades.get(this.currentLocation));
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

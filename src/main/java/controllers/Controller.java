@@ -15,6 +15,7 @@ import models.Cidades.*;
 
 public class Controller {
   private int busID = 0;
+  private Timer anomaly = new Timer();
 
   private List<Passageiro> cascaisPassengers = new ArrayList<>();
   private List<Passageiro> lisboaPassangers = new ArrayList<>();
@@ -110,16 +111,20 @@ public class Controller {
       if (tipoAutocarro.equals("Convencional")) {
         AutocarroConvencional autocarroConvencional = new AutocarroConvencional(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroConvencional);
+        System.out.println("Autocarro Convencional ligado | ID: " + busID);
         // funcionario.adicionarNovaThread(autocarroConvencional);
       } else if (tipoAutocarro.equals("Expresso")) {
         AutocarroExpresso autocarroExpresso = new AutocarroExpresso(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroExpresso);
+        System.out.println("Autocarro Expresso ligado | ID: " + busID);
       } else if (tipoAutocarro.equals("LongDrive")) {
         AutocarroLongDrive autocarroLongDrive = new AutocarroLongDrive(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroLongDrive);
+        System.out.println("Autocarro Long-Drive ligado | ID: " + busID);
       } else if (tipoAutocarro.equals("Minibus")) {
         AutocarroMiniBus autocarroMiniBus = new AutocarroMiniBus(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroMiniBus);
+        System.out.println("Autocarro Minibus ligado | ID: " + busID);
       }
     }
   }
@@ -133,7 +138,6 @@ public class Controller {
 
   public void anomaly() {
     int timeToStart = new Random().nextInt(4, 30);
-    Timer t1 = new Timer();
     TimerTask tt = new TimerTask() {
       public void run() {
         int randBusId = new Random().nextInt(autocarrosHashMap.size()) + 1;
@@ -155,12 +159,12 @@ public class Controller {
         }
       }
     };
-    t1.scheduleAtFixedRate(tt, timeToStart * 1000, 15000);
+    anomaly.scheduleAtFixedRate(tt, timeToStart * 1000, 15000);
 
   }
 
   public boolean enoughBuses() {
-    return autocarrosHashMap.size() >= 4 && autocarrosHashMap.size() <= 10;
+    return autocarrosHashMap.size() >= 1 && autocarrosHashMap.size() <= 10;
   }
 
   public boolean enoughPassengers() {
@@ -190,6 +194,8 @@ public class Controller {
         if (numPassengers == 0) {
           for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {
             entry.getValue().stop();
+            anomaly.cancel();
+            anomaly.purge();
           }
 
           System.out.println("All passengers have arrived to their respective destinations");
