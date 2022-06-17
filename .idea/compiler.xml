@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ProjectPP" />
+        <module name="ProjectoPP" />
         <module name="NewProjectPP" />
+        <module name="ProjectPP" />
         <module name="Shit" />
       </profile>
     </annotationProcessing>

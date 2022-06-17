@@ -1,44 +1,41 @@
 package models.Autocarros;
+//TODO comentar tudo
 
-import models.Cidades.Cidade;
+//TODO fazer metodo (ou classe) que le autocarros e println(display output) a cada segundo ou 100 milis
+
 import models.Passageiro;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
-public class Autocarros implements Runnable{
+public class Autocarros extends Thread {
   final int maxPassageiros;
   private int busID;
   private boolean moving = false;
   private boolean avaria = false;
   private double speed;
-  private String currentLocation;
+  private int currentLocation;
 
-  private List<Integer> avarias = Arrays.asList(100, 200, 300, 500, 1000);
-
-  private List<String> cidades = Arrays.asList("Lisboa", "Porto", "Cascais", "Braga", "Coimbra");
+  private List<String> cidades = Arrays.asList("Cascais", "Lisboa", "Coimbra", "Porto", "Braga");
+  private List<List> passengerCities;
   private Boolean goingForward;
 
-  private HashMap<String, Cidade> cidadeMap;
+  private List<Passageiro> passengersInBus;
 
-  private HashMap<String, ArrayList<Passageiro>> passageiros;
   private Integer numeroPassageiros;
 
   private Boolean isRunning;
 
-  public Autocarros(int maxPassageiros, double speed, String currentLocation, int busID, HashMap<String, Cidade> cidadesMap) {
+  public Autocarros(int maxPassageiros, double speed, int currentLocation, int busID, List<List> cidades) {
+    System.out.println("Autocarro ligado");
+    this.passengerCities = cidades;
     this.maxPassageiros = maxPassageiros;
     this.speed = speed;
     this.currentLocation = currentLocation;
     this.busID = busID;
     this.isRunning = true;
     this.goingForward = true;
-    this.cidadeMap = cidadesMap;
-    this.passageiros = new HashMap<>();
-    for(String cidade: this.cidades){
-      this.passageiros.put(cidade, new ArrayList<>());
-    }
+    this.passengersInBus = new ArrayList();
     this.numeroPassageiros = 0;
   }
 
@@ -46,11 +43,11 @@ public class Autocarros implements Runnable{
     return this.busID;
   }
 
-  public void setCurrentLocation(String currentLocation) {
+  public void setCurrentLocation(int currentLocation) {
     this.currentLocation = currentLocation;
   }
 
-  public String getCurrentLocation() {
+  public int getCurrentLocation() {
     return currentLocation;
   }
 
@@ -82,55 +79,95 @@ public class Autocarros implements Runnable{
     isRunning = false;
   }
 
+  public void nextStop() {
+    if (currentLocation == 4) {
+      this.goingForward = false;
+    }
+    if (currentLocation == 0) {
+      this.goingForward = true;
+    }
+    if (goingForward) {
+      this.currentLocation++;
+    } else {
+      this.currentLocation--;
+    }
+  }
+
+  public void offloadPassengers() {
+    String myLocation = this.cidades.get(this.currentLocation);
+    for (int i = 0; i < passengersInBus.size(); i++) {
+      var p = passengersInBus.get(i);
+      if (p.getCidadeDestino().matches(myLocation)) {
+        i--;
+        passengersInBus.remove(p);
+        this.numeroPassageiros--;
+      }
+    }
+  }
+
+  public void loadPassengers() {
+    List<Passageiro> passengers = this.passengerCities.get(this.currentLocation);
+    for (int i = 0; i < passengers.size(); i++) {
+      if (this.passengersInBus.size() == maxPassageiros) {
+        break;
+      }
+      i--;
+
+      Passageiro p = passengers.get(0);
+      this.passengersInBus.add(p);
+      passengers.remove(p);
+      this.numeroPassageiros++;
+    }
+  }
+
+  public int getMaxPassageiros() {
+    return this.maxPassageiros;
+  }
+
+  public void managePassengers() {
+    System.out.println(passengersInBus);
+    offloadPassengers();
+    System.out.println(passengersInBus);
+    loadPassengers();
+    System.out.println(passengersInBus);
+
+    System.out.println(currentLocation);
+    System.out.println("\nautocarro " + busID + " Load, Unload");
+    System.out.println("Cidades");
+    System.out.println(passengerCities.get(0).toString());
+    System.out.println(passengerCities.get(1).toString());
+    System.out.println(passengerCities.get(2).toString());
+    System.out.println(passengerCities.get(3).toString());
+    System.out.println(passengerCities.get(4).toString());
+  }
+
+  public void onTheMove() {
+
+    for (int i = 0; i < 5; i++) {
+      try {
+        // Thread.sleep(ThreadLocalRandom.current().nextInt(1000, 5001));
+        Thread.sleep(100);
+
+        // TODO refractor this
+        System.out.println("autocarro " + this.busID + " esta a " + (i + 1) + "/5 da viagem ate "
+            + this.cidades.get(this.currentLocation));
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+
+  }
+
   @Override
   public void run() {
-    while(isRunning){
-      System.out.println(this.cidades.contains(this.currentLocation));
-      if(this.cidades.contains(this.currentLocation)){
-
-
-        try {
-          System.out.println(busID + " está em " + this.currentLocation);
-          TimeUnit.MILLISECONDS.sleep(1000);
-          if(this.passageiros.get(this.currentLocation).size() > 0){
-            System.out.println("nos passageiros");
-            this.passageiros.put(this.currentLocation, new ArrayList<>());
-          }
-          while(this.numeroPassageiros < this.maxPassageiros && this.cidadeMap.get(this.currentLocation).hasPassageiros()){
-            Passageiro passageiro = this.cidadeMap.get(this.currentLocation).getPassageiro();
-            this.passageiros.get(passageiro.getCidadeDestino()).add(passageiro);
-          }
-          System.out.println(this.busID + " saiu de " + this.currentLocation);
-          this.currentLocation = null;
-        } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-
-      else {
-        //Avaria
-        double chanceDeAvaria = ThreadLocalRandom.current().nextDouble();
-        int tempoDeAvaria = 0;
-        if(chanceDeAvaria < 0.1) {
-          Random rand = new Random();
-          tempoDeAvaria = this.avarias.get(rand.nextInt(this.avarias.size()));
-        }
-        //
-        try {
-          System.out.println(this.busID + "esta a mudar de cidade");
-          TimeUnit.MILLISECONDS.sleep(1000 + tempoDeAvaria);
-          System.out.println(this.busID + "está a chegar na cidade");
-          //this.currentLocation = this.cidades.get(this.cidades.indexOf(this.currentLocation)+1);
-          System.out.println(this.currentLocation);
-
-        } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-
-        //TODO
-        //"dormir" o tempo que a thread precisa
-        //if ( houver alguma avaria, adicionar ao tempo do percurso )
-      }
+    while (isRunning) {
+      // System.out.println(this.cidades.get(currentLocation));
+      // System.out.println(this.currentLocation);
+      managePassengers();
+      nextStop();
+      onTheMove();
+      // "dormir" o tempo que a thread precisa
+      // if ( houver alguma avaria, adicionar ao tempo do percurso )
     }
   }
 }
