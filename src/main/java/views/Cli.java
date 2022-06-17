@@ -49,10 +49,10 @@ public class Cli {
 
         }
       }
-      if (controller.enoughBuses()) {
+      if (!controller.enoughBuses()) {
 
         System.out.println("Simulacao NAO iniciada: Autocarros insuficientes");
-      } else if (controller.enoughPassengers()) {
+      } else if (!controller.enoughPassengers()) {
         // TODO adicionar not (!)
         System.out.println("Simulacao NAO iniciada: Passageiros insuficientes\n");
 

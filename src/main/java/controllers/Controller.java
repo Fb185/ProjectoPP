@@ -183,6 +183,9 @@ public class Controller {
         int numPassengers = 0;
         for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {
           numPassengers += entry.getValue().getNumeroPassageiros();
+          // ID of bus and passengers it has
+          // System.out.println(entry.getValue().getBusID());
+          // System.out.println(numPassengers);
         }
         if (numPassengers == 0) {
           for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {

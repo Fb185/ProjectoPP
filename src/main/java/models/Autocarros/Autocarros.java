@@ -96,6 +96,7 @@ public class Autocarros extends Thread {
   public void offloadPassengers() {
     String myLocation = this.cidades.get(this.currentLocation);
     for (int i = 0; i < passengersInBus.size(); i++) {
+      // System.out.println(passengersInBus);
       var p = passengersInBus.get(i);
       if (p.getCidadeDestino().matches(myLocation)) {
         i--;
@@ -106,17 +107,19 @@ public class Autocarros extends Thread {
   }
 
   public void loadPassengers() {
-    List<Passageiro> passengers = this.passengerCities.get(this.currentLocation);
-    for (int i = 0; i < passengers.size(); i++) {
-      if (this.passengersInBus.size() == maxPassageiros) {
-        break;
-      }
-      i--;
+    synchronized (this.passengerCities) {
+      List<Passageiro> passengers = this.passengerCities.get(this.currentLocation);
+      for (int i = 0; i < passengers.size(); i++) {
+        if (this.passengersInBus.size() == maxPassageiros) {
+          break;
+        }
+        i--;
 
-      Passageiro p = passengers.get(0);
-      this.passengersInBus.add(p);
-      passengers.remove(p);
-      this.numeroPassageiros++;
+        Passageiro p = passengers.get(0);
+        this.passengersInBus.add(p);
+        passengers.remove(p);
+        this.numeroPassageiros++;
+      }
     }
   }
 
@@ -125,20 +128,20 @@ public class Autocarros extends Thread {
   }
 
   public void managePassengers() {
-    System.out.println(passengersInBus);
+    // System.out.println(passengersInBus);
     offloadPassengers();
-    System.out.println(passengersInBus);
+    // System.out.println(passengersInBus);
     loadPassengers();
-    System.out.println(passengersInBus);
+    // System.out.println(passengersInBus);
 
-    System.out.println(currentLocation);
-    System.out.println("\nautocarro " + busID + " Load, Unload");
-    System.out.println("Cidades");
-    System.out.println(passengerCities.get(0).toString());
-    System.out.println(passengerCities.get(1).toString());
-    System.out.println(passengerCities.get(2).toString());
-    System.out.println(passengerCities.get(3).toString());
-    System.out.println(passengerCities.get(4).toString());
+    // System.out.println(currentLocation);
+    // System.out.println("\nautocarro " + busID + " Load, Unload");
+    // System.out.println("Cidades");
+    // System.out.println(passengerCities.get(0).toString());
+    // System.out.println(passengerCities.get(1).toString());
+    // System.out.println(passengerCities.get(2).toString());
+    // System.out.println(passengerCities.get(3).toString());
+    // System.out.println(passengerCities.get(4).toString());
   }
 
   public void onTheMove() {
@@ -149,8 +152,9 @@ public class Autocarros extends Thread {
         Thread.sleep(100);
 
         // TODO refractor this
-        System.out.println("autocarro " + this.busID + " esta a " + (i + 1) + "/5 da viagem ate "
-            + this.cidades.get(this.currentLocation));
+        // System.out.println("autocarro " + this.busID + " esta a " + (i + 1) + "/5 da
+        // viagem ate "
+        // + this.cidades.get(this.currentLocation));
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
