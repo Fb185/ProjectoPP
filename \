@@ -14,6 +14,7 @@ public class Cli {
   private String passageirosCoimbra;
   private String passageirosPorto;
   private String passageirosBraga;
+  // What
 
   private Controller controller;
 
@@ -27,11 +28,11 @@ public class Cli {
     // in two different lines for example:
     // Bus 4 Cascais Convencional
     // or
+    //
+    // Bus 4 Cascais Convencional
     // Bus 1 Cascais Convencional
     // Bus 1 Cascais Convencional
     // Bus 1 Cascais Convencional
-    // Bus 1 Cascais Convencional
-    // the same logic goes for passengers
     try (Scanner sc = new Scanner(file)) {
       while (sc.hasNextLine()) {
         String[] cutLine = sc.nextLine().split(" ");
@@ -40,7 +41,6 @@ public class Cli {
             this.quantity = cutLine[1];
             this.startingCity = cutLine[2];
             this.type = cutLine[3];
-            // busses are created according too the value recieved from scanner
             controller.createAutocarro(type, startingCity, quantity);
           }
           case "Passageiros" -> {
@@ -49,24 +49,19 @@ public class Cli {
             this.passageirosCoimbra = cutLine[3];
             this.passageirosPorto = cutLine[4];
             this.passageirosBraga = cutLine[5];
-            // citties are created and populated with the respective ammount of passengers
-            // to each
             controller.createCities(passageirosCascais, passageirosLisboa,
                 passageirosCoimbra, passageirosPorto,
                 passageirosBraga);
           }
         }
       }
-      // Check if the ammount of busses and passengers is within the specifications of
-      // the project
-      if (!controller.enoughBuses()) { // goTo definition
+      if (!controller.enoughBuses()) {
+
         System.out.println("Simulacao NAO iniciada: Autocarros insuficientes");
-      } else if (!controller.enoughPassengers()) { // goTo definition
+      } else if (!controller.enoughPassengers()) {
         System.out.println("Simulacao NAO iniciada: Passageiros insuficientes\n");
 
       } else {
-        // initiate the simulation as well as anomalies and a check to see if all
-        // passengers have arrived their destinations
         controller.simular();
         controller.anomaly();
         controller.checkEnd();

@@ -36,6 +36,9 @@ public class Controller {
   public void createCities(String passageirosCascais, String passageirosLisboa, String passageirosCoimbra,
       String passageirosPorto,
       String passageirosBraga) {
+    // list of possible destinations passengers can be assigner to. Bellow there is
+    // a workaround for the problem os passengers starting
+    // their destination
     List<String> destinos = new ArrayList<String>();
     destinos.add("Cascais");
     destinos.add("Lisboa");
@@ -45,11 +48,17 @@ public class Controller {
 
     for (int i = 0; i < Integer.parseInt(passageirosCascais); i++) {
       var city = destinos.get(0);
-      destinos.remove(city);
-      String destination = destinos.get(new Random().nextInt(destinos.size()));
+      destinos.remove(city); // here i removed and added the city where the passenger is currently at to
+                             // avoid them to
+                             // start at their destination and make unnecessary journeys
+      String destination = destinos.get(new Random().nextInt(destinos.size())); // a destination is assigned at random
+                                                                                // at this point the current location of
+                                                                                // the passenger
+                                                                                // cannot be its destination
       destinos.add(0, city);
       Passageiro p = new Passageiro(destination);
-      cidades.get(0).add(p);
+      cidades.get(0).add(p); // the object of type passenger is added to the passenger list of the city (in
+                             // this case Cascais)
     }
     for (int i = 0; i < Integer.parseInt(passageirosLisboa); i++) {
       var city = destinos.get(1);
@@ -112,7 +121,6 @@ public class Controller {
         AutocarroConvencional autocarroConvencional = new AutocarroConvencional(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroConvencional);
         System.out.println("Autocarro Convencional ligado | ID: " + busID);
-        // funcionario.adicionarNovaThread(autocarroConvencional);
       } else if (tipoAutocarro.equals("Expresso")) {
         AutocarroExpresso autocarroExpresso = new AutocarroExpresso(cityPosition, busID, cidades);
         autocarrosHashMap.put(busID, autocarroExpresso);
@@ -129,6 +137,9 @@ public class Controller {
     }
   }
 
+  // this function goes through the hashmap of busses, that contains the bus
+  // objects. These objects are threads
+  // the function starts the threads
   public void simular() {
     for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {
       entry.getValue().start();
@@ -140,14 +151,14 @@ public class Controller {
     int timeToStart = new Random().nextInt(4, 30);
     TimerTask tt = new TimerTask() {
       public void run() {
+        // a bus is chosen at random to suffer an anomaly
         int randBusId = new Random().nextInt(autocarrosHashMap.size()) + 1;
         var affectedBus = autocarrosHashMap.get(randBusId);
         synchronized (affectedBus) {
           try {
-            // TODO add log to bus of anomaly
             System.out.println("\nOcorreu uma anomalia....\n");
-            System.out.println("Autocarro " + affectedBus.getBusID() + ": esta na shit ");
-
+            System.out.println("Autocarro " + affectedBus.getBusID() + ": sofreu uma anomalia");
+            // here the bus thread is suspended for a random ammount of time
             affectedBus.suspend();
             Thread.sleep(new Random().nextInt(5000, 10000)); // bus sleeps for random time between 5 and 10 seconds
             affectedBus.resume();
@@ -164,12 +175,17 @@ public class Controller {
   }
 
   public boolean enoughBuses() {
-    return autocarrosHashMap.size() >= 1 && autocarrosHashMap.size() <= 10;
+    return autocarrosHashMap.size() >= 3 && autocarrosHashMap.size() <= 10;
   }
 
   public boolean enoughPassengers() {
     int minimumPassengers = 0;
     int currentPassengers = 0;
+    // goes through all existing busses and checks if the number of passengers in
+    // the confg file matches at least the capacity of
+    // the combined busses
+
+    // this is why its important to create the busses before running checks
     for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {
       minimumPassengers += entry.getValue().getMaxPassageiros();
     }
@@ -181,7 +197,8 @@ public class Controller {
 
   public void checkEnd() {
     Timer t1 = new Timer();
-    t1.scheduleAtFixedRate(new TimerTask() {
+    t1.scheduleAtFixedRate(new TimerTask() { // this is run at a faster rate than anything else so that no time is
+                                             // wasted with unsynchronized threads
       @Override
       public void run() {
         int numPassengers = 0;
@@ -192,13 +209,14 @@ public class Controller {
           // System.out.println(numPassengers);
         }
         if (numPassengers == 0) {
+          // stops all the threads
           for (Map.Entry<Integer, Autocarros> entry : autocarrosHashMap.entrySet()) {
             entry.getValue().stop();
             anomaly.cancel();
             anomaly.purge();
           }
 
-          System.out.println("All passengers have arrived to their respective destinations");
+          System.out.println("\nAll passengers have arrived to their respective destinations");
           System.out.println("TERMINATING in: 5s");
           try {
             Thread.sleep(1000);
