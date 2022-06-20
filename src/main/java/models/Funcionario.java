@@ -11,14 +11,13 @@ public class Funcionario {
   private HashMap<Integer, Thread> busListThreads;
   private ExecutorService threadPool;
 
-
-  public Funcionario(){
+  public Funcionario() {
     this.busList = new HashMap<>();
     this.busListThreads = new HashMap<>();
     this.threadPool = Executors.newCachedThreadPool();
   }
 
-  public void adicionarNovaThread(Autocarros autocarro){
+  public void adicionarNovaThread(Autocarros autocarro) {
     this.busList.put(autocarro.getBusID(), autocarro);
     Thread thread = new Thread(autocarro);
     this.busListThreads.put(autocarro.getBusID(), thread);

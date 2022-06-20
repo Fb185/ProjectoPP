@@ -11,7 +11,6 @@ import java.util.TimerTask;
 
 import models.*;
 import models.Autocarros.*;
-import models.Cidades.*;
 
 public class Controller {
   private int busID = 0;
@@ -49,8 +48,8 @@ public class Controller {
     for (int i = 0; i < Integer.parseInt(passageirosCascais); i++) {
       var city = destinos.get(0);
       destinos.remove(city); // here i removed and added the city where the passenger is currently at to
-                             // avoid them to
-                             // start at their destination and make unnecessary journeys
+                             // avoid them
+                             // starting at their destination and make unnecessary journeys
       String destination = destinos.get(new Random().nextInt(destinos.size())); // a destination is assigned at random
                                                                                 // at this point the current location of
                                                                                 // the passenger
@@ -171,7 +170,6 @@ public class Controller {
       }
     };
     anomaly.scheduleAtFixedRate(tt, timeToStart * 1000, 15000);
-
   }
 
   public boolean enoughBuses() {

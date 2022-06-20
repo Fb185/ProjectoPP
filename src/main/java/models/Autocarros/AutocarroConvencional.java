@@ -1,8 +1,5 @@
 package models.Autocarros;
 
-import models.Cidades.Cidade;
-
-import java.util.HashMap;
 import java.util.List;
 
 public class AutocarroConvencional extends Autocarros {

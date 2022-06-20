@@ -2,7 +2,6 @@ package models.Autocarros;
 
 import models.Passageiro;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Autocarros extends Thread {
   final int maxPassageiros;

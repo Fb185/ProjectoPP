@@ -2,7 +2,6 @@ package models.Cidades;
 
 import models.Passageiro;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Cidade {
@@ -16,7 +15,7 @@ public class Cidade {
     this.passageirosNaEstacao = passageirosNaEstacao;
     this.passageiroList = new ArrayList<Passageiro>();
     List cidades = Arrays.asList("Lisboa", "Porto", "Cascais", "Braga", "Coimbra");
-    for(int i = 0; i < passageirosNaEstacao; i++){
+    for (int i = 0; i < passageirosNaEstacao; i++) {
       Random rand = new Random();
       String cidade = (String) cidades.get(rand.nextInt(cidades.size()));
       Passageiro passageiro = new Passageiro(cidade);
@@ -24,27 +23,20 @@ public class Cidade {
     }
   }
 
-
-  public String getName() {
-    return this.name;
-  }
-
-  public int getPassageirosNaEstacao() {
-    return this.passageirosNaEstacao;
-  }
-
-  public Passageiro getPassageiro() {
-    return this.passageiroList.remove(this.passageiroList.size()-1);
-  }
-
-  public boolean hasPassageiros() {
-    return this.passageiroList.size() > 0;
-  }
-
-  // public int getautoCarrosNaEstacao() {
-  // return this.autoCarrosNaEstacao;
+  // public String getName() {
+  // return this.name;
   // }
 
+  // public int getPassageirosNaEstacao() {
+  // return this.passageirosNaEstacao;
+  // }
 
+  // public Passageiro getPassageiro() {
+  // return this.passageiroList.remove(this.passageiroList.size()-1);
+  // }
+
+  // public boolean hasPassageiros() {
+  // return this.passageiroList.size() > 0;
+  // }
 
 }
