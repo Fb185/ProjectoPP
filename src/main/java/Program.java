@@ -7,6 +7,7 @@ public class Program {
     System.out.println("Projecto Paradigmas de Programação: Simulação de Autocarros\n");
     Thread.sleep(1000);
     new Cli();
+    new gui();
   }
 
 }
